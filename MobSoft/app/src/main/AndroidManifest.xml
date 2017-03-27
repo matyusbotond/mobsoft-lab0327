@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.invoicedetails.InvoiceDetailsActivity" />
+        <activity android:name=".ui.invoiceedit.InvoiceEditActivity" />
+        <activity android:name=".ui.invoices.InvoicesActivity" />
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.persondetails.PersonDetailsActivity" />
+        <activity android:name=".ui.personedit.PersonEditActivity" />
+        <activity android:name=".ui.persons.PersonsActivity"></activity>
     </application>
 
 </manifest>
