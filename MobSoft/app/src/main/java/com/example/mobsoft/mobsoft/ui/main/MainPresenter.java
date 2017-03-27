@@ -8,17 +8,9 @@ import com.example.mobsoft.mobsoft.ui.Presenter;
 
 public class MainPresenter extends Presenter<MainScreen> {
 
-    private static MainPresenter instance = null;
-
-    private MainPresenter() {
+    public MainPresenter() {
     }
 
-    public static MainPresenter getInstance() {
-        if (instance == null) {
-            instance = new MainPresenter();
-        }
-        return instance;
-    }
 
     @Override
     public void attachScreen(MainScreen screen) {
