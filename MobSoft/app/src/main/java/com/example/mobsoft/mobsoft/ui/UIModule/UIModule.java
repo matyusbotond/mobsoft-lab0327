@@ -7,7 +7,14 @@ package com.example.mobsoft.mobsoft.ui.UIModule;
 import android.content.Context;
 
 
+import com.example.mobsoft.mobsoft.ui.invoicedetails.InvoiceDetailsPresenter;
+import com.example.mobsoft.mobsoft.ui.invoiceedit.InvoiceEditPresenter;
+import com.example.mobsoft.mobsoft.ui.invoices.InvoicesPresenter;
+import com.example.mobsoft.mobsoft.ui.login.LoginPresenter;
 import com.example.mobsoft.mobsoft.ui.main.MainPresenter;
+import com.example.mobsoft.mobsoft.ui.persondetails.PersonDetailsPresenter;
+import com.example.mobsoft.mobsoft.ui.personedit.PersonEditPresenter;
+import com.example.mobsoft.mobsoft.ui.persons.PersonsPresenter;
 
 import javax.inject.Singleton;
 
@@ -31,6 +38,51 @@ public class UIModule {
     @Singleton
     public MainPresenter provideMainPresenter() {
         return new MainPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public InvoiceDetailsPresenter provideInvoiceDetails() {
+        return new InvoiceDetailsPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public InvoiceEditPresenter provideInvoiceEditPresenter() {
+        return new InvoiceEditPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public InvoicesPresenter provideInvoicesPresenter() {
+        return new InvoicesPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public PersonDetailsPresenter providePersonDetailsPresenter() {
+        return new PersonDetailsPresenter();
+    }
+
+
+    @Provides
+    @Singleton
+    public PersonEditPresenter providePersonEditPresenter() {
+        return new PersonEditPresenter();
+    }
+
+
+    @Provides
+    @Singleton
+    public PersonsPresenter providePersonsPresenter() {
+        return new PersonsPresenter();
+    }
+
+
+    @Provides
+    @Singleton
+    public LoginPresenter provideLoginPresenter() {
+        return new LoginPresenter();
     }
 
 }
