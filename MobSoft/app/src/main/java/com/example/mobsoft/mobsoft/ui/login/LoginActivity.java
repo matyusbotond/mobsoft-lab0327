@@ -31,4 +31,19 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         super.onStop();
         presenter.detachScreen();
     }
+
+    @Override
+    public void setLoginResponse(boolean loginSuccessfull) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void setLoading(boolean loading) {
+
+    }
 }

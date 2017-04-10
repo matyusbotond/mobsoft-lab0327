@@ -31,4 +31,14 @@ public class PersonEditActivity extends AppCompatActivity implements PersonEditS
         super.onStop();
         presenter.detachScreen();
     }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void setLoading(boolean loading) {
+
+    }
 }

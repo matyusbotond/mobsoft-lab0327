@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.mobsoft.mobsoft.MobSoftApplication;
 import com.example.mobsoft.mobsoft.R;
+import com.example.mobsoft.mobsoft.model.Invoice;
 import com.example.mobsoft.mobsoft.ui.main.MainPresenter;
 
 import javax.inject.Inject;
@@ -32,5 +33,20 @@ public class InvoiceDetailsActivity extends AppCompatActivity implements Invoice
     protected void onStop() {
         super.onStop();
         presenter.detachScreen();
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void setLoading(boolean loading) {
+
+    }
+
+    @Override
+    public void setInvoice(Invoice invoice) {
+
     }
 }

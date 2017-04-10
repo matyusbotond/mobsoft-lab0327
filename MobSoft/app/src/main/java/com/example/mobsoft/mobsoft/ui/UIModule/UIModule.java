@@ -16,10 +16,14 @@ import com.example.mobsoft.mobsoft.ui.persondetails.PersonDetailsPresenter;
 import com.example.mobsoft.mobsoft.ui.personedit.PersonEditPresenter;
 import com.example.mobsoft.mobsoft.ui.persons.PersonsPresenter;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.greenrobot.event.EventBus;
 
 @Module
 public class UIModule {
@@ -85,4 +89,16 @@ public class UIModule {
         return new LoginPresenter();
     }
 
+
+    @Provides
+    @Singleton
+    public EventBus provideEventBus() {
+        return EventBus.getDefault();
+    }
+
+    @Provides
+    @Singleton
+    public Executor provideExecutor() {
+        return Executors.newFixedThreadPool(1);
+    }
 }

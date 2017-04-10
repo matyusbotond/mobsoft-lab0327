@@ -32,4 +32,14 @@ public class InvoiceEditActivity extends AppCompatActivity implements InvoiceEdi
         super.onStop();
         presenter.detachScreen();
     }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void setLoading(boolean loading) {
+
+    }
 }

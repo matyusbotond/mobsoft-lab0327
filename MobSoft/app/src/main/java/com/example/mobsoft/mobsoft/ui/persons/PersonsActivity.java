@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import com.example.mobsoft.mobsoft.MobSoftApplication;
 import com.example.mobsoft.mobsoft.R;
+import com.example.mobsoft.mobsoft.model.Person;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -30,5 +33,20 @@ public class PersonsActivity extends AppCompatActivity implements PersonsScreen 
     protected void onStop() {
         super.onStop();
         presenter.detachScreen();
+    }
+
+    @Override
+    public void setPersons(List<Person> persons) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void setLoading(boolean loading) {
+
     }
 }
