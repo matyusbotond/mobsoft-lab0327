@@ -1,0 +1,157 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: SIMS API
+  description: Move your app forward with the Uber API
+  version: "1.0.0"
+# the domain of the service
+host: api.sims.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /persons:
+    get:
+      summary: Persons list
+      description: |
+        Visszaadja a bejelentkezett felhasználóhoz tartozó szeélyeket.
+      parameters:
+        - name: personId
+          in: query
+          description: bejelentkezett felhasználó id-ja
+          required: true
+          type: number
+          format: double
+      tags:
+        - Persons
+      responses:
+        200:
+          description: An array of persons
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Person'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  post:
+      summary: save new person
+      description: |
+        Elment egy személyt.
+      parameters:
+        - name: person
+          in: body
+          description: Felhasználó
+          required: true
+          schema: 
+            $ref: '#/definitions/Error'
+      tags:
+        - Persons
+      responses:
+        200:
+          description: Elmentett felhasználó
+          schema:
+            $ref: '#/definitions/Person'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /persons/{id}:
+    get:
+      summary: Persons 
+      description: |
+        Visszaadja a bejelentkezett felhasználóhoz tartozó szeélyeket.
+      parameters:
+        - name: id
+          in: path
+          description: Id szerint a felhasználó
+          required: true
+          type: number
+          format: double
+      tags:
+        - Persons
+      responses:
+        200:
+          description: Megfelelő személy
+          schema:
+            $ref: '#/definitions/Person'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: save person
+      description: |
+        Elment egy személyt.
+      parameters:
+        - name: id
+          in: path
+          description: Id szerint a felhasználó
+          required: true
+          type: number
+          format: double
+      tags:
+        - Persons
+      responses:
+        200:
+          description: Sikeres mentés
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Person:
+    type: object
+    properties:
+      id:
+        type: number
+        description: Egyedi azonosító.
+      name:
+        type: string
+        description: Megjelenítendő név.
+      username:
+        type: string
+        description: Felhasználó egyedi felhasználóneve.
+      role:
+        type: string
+        description: Felhasználó jogosultsági szerepköre.
+      password:
+        type: string
+        description: Felhasználó jelszava.
+  Invoice:
+    type: object
+    properties:
+      id:
+        type: number
+        description: Egyedi azonosító.
+      fromAddress:
+        type: string
+        description: Kiállító cég címe
+      fromName:
+        type: string
+        description: Kiállító cég neve.
+      created:
+        type: string
+        description: Keletkezés dátuma.
+      netAmount:
+        type: number
+        description: Nettó végösszeg
+      tax:
+        type: number
+        description: Áfa tartalom
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
