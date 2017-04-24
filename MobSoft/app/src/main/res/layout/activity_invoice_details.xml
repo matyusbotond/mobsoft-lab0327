@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_invoice_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,5 +10,138 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mobsoft.mobsoft.ui.invoicedetails.InvoiceDetailsActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/invoiceDetailsToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="@color/colorPrimary" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Id"
+        android:ems="10"
+        android:layout_below="@+id/invoiceDetailsToolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:id="@+id/idTv" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="2017.01.01."
+        android:ems="10"
+        android:id="@+id/dateTv"
+        android:textAlignment="textEnd"
+        android:layout_alignBaseline="@+id/idTv"
+        android:layout_alignBottom="@+id/idTv"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Test Elekt Kft."
+        android:ems="10"
+        android:layout_below="@+id/idTv"
+        android:layout_marginTop="22dp"
+        android:id="@+id/fromNameTv"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="2117 Isaszeg, Mátyás király utca 29."
+        android:ems="10"
+        android:id="@+id/addressTv"
+        android:layout_below="@+id/fromNameTv"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:singleLine="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="1000 Ft"
+        android:ems="10"
+        android:layout_marginTop="38dp"
+        android:id="@+id/amountTv"
+        android:layout_below="@+id/addressTv"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/editText6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Total:"
+        android:ems="10"
+        android:id="@+id/editText10"
+        android:textAlignment="textEnd"
+        android:layout_below="@+id/editText6"
+        android:layout_alignRight="@+id/editText6"
+        android:layout_alignEnd="@+id/editText6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="27 %"
+        android:ems="10"
+        android:id="@+id/taxTv"
+        android:layout_below="@+id/amountTv"
+        android:layout_alignLeft="@+id/amountTv"
+        android:layout_alignStart="@+id/amountTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="1270 Ft"
+        android:ems="10"
+        android:id="@+id/totalTv"
+        android:layout_alignBaseline="@+id/editText10"
+        android:layout_alignBottom="@+id/editText10"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/taxTv"
+        android:layout_alignStart="@+id/taxTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Tax:"
+        android:ems="10"
+        android:id="@+id/editText6"
+        android:textAlignment="textEnd"
+        android:layout_below="@+id/amountLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Amount:"
+        android:ems="10"
+        android:id="@+id/amountLabel"
+        android:textAlignment="textEnd"
+        android:layout_alignBaseline="@+id/amountTv"
+        android:layout_alignBottom="@+id/amountTv"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

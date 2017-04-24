@@ -91,7 +91,7 @@ public class InvoiceDetailsPresenter extends Presenter<InvoiceDetailsScreen> {
         } else {
             if (screen != null) {
                 screen.setLoading(false);
-                screen.showMessage("Sikeres törlés");
+                screen.setRemoveResult();
             }
         }
     }

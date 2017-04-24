@@ -10,4 +10,6 @@ import com.example.mobsoft.mobsoft.ui.ScreenBase;
 public interface InvoiceDetailsScreen extends ScreenBase {
 
     void setInvoice(Invoice invoice);
+
+    void setRemoveResult();
 }

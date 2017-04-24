@@ -1,13 +1,17 @@
 package com.example.mobsoft.mobsoft.ui.invoices;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.example.mobsoft.mobsoft.MobSoftApplication;
 import com.example.mobsoft.mobsoft.R;
 import com.example.mobsoft.mobsoft.model.Invoice;
+import com.example.mobsoft.mobsoft.ui.persons.PersonsActivity;
 
 import java.util.List;
 
@@ -26,6 +30,8 @@ public class InvoicesActivity extends AppCompatActivity implements InvoicesScree
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.invoicesToolbar);
         setSupportActionBar(myToolbar);
+
+        presenter.getInvoices();
     }
 
     @Override
@@ -42,7 +48,8 @@ public class InvoicesActivity extends AppCompatActivity implements InvoicesScree
 
     @Override
     public void setInvoices(List<Invoice> invoices) {
-
+        final InvoicesArrayAdapter adapter = new InvoicesArrayAdapter(this,invoices);
+        ((ListView)this.findViewById(R.id.invoicesListView)).setAdapter(adapter);
     }
 
     @Override
@@ -60,5 +67,25 @@ public class InvoicesActivity extends AppCompatActivity implements InvoicesScree
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.invoices_toolbar_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                presenter.getInvoices();
+                return true;
+
+            case R.id.action_persons:
+                Intent in = new Intent(this, PersonsActivity.class);
+                startActivity(in);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }
