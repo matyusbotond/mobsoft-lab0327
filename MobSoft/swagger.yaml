@@ -1,8 +1,7 @@
-
 swagger: '2.0'
 info:
   title: SIMS API
-  description: 
+  description: Simple invoice management system api
   version: "1.0.0"
 # the domain of the service
 host: api.sims.com
@@ -26,14 +25,12 @@ paths:
             in: query
             description: Felhasználónév
             required: true
-            schema: 
-              type: string
+            type: string
           - name: password
             in: query
             description: Hashelt jelszó
             required: true
-            schema: 
-              type: string
+            type: string
       responses:
         200:
           description: Sikeres bejelentkezés

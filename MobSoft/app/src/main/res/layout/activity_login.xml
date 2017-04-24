@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
@@ -10,4 +11,54 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mobsoft.mobsoft.ui.login.LoginActivity">
 
+    <Button
+        android:text="Bejelentkezés"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/lgnButton"
+        android:layout_alignRight="@+id/password"
+        android:layout_alignEnd="@+id/password"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignStart="@+id/password"
+        android:onClick="lgnButton_onClick" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_marginBottom="13dp"
+        android:id="@+id/username"
+        android:layout_above="@+id/password"
+        android:hint="Felhasználónév"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_marginBottom="25dp"
+        android:id="@+id/password"
+        android:hint="Jelszó"
+        android:layout_above="@+id/lgnButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_lock_lock"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/username" />
 </RelativeLayout>
