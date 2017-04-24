@@ -20,13 +20,6 @@ paths:
       summary: Persons list
       description: |
         Visszaadja a bejelentkezett felhasználóhoz tartozó szeélyeket.
-      parameters:
-        - name: personId
-          in: query
-          description: bejelentkezett felhasználó id-ja
-          required: true
-          type: number
-          format: double
       tags:
         - Persons
       responses:
@@ -40,28 +33,28 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  post:
-      summary: save new person
-      description: |
-        Elment egy személyt.
-      parameters:
-        - name: person
-          in: body
-          description: Felhasználó
-          required: true
-          schema: 
-            $ref: '#/definitions/Error'
-      tags:
-        - Persons
-      responses:
-        200:
-          description: Elmentett felhasználó
-          schema:
-            $ref: '#/definitions/Person'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+    post:
+        summary: Új személyt szúr a bejelentkezett felhasználóhoz
+        description: |
+          Elment egy személyt.
+        parameters:
+          - name: person
+            in: body
+            description: Felhasználó
+            required: true
+            schema: 
+              $ref: '#/definitions/Invoice'
+        tags:
+          - Persons
+        responses:
+          200:
+            description: Elmentett felhasználó
+            schema:
+              $ref: '#/definitions/Person'
+          default:
+            description: Unexpected error
+            schema:
+              $ref: '#/definitions/Error'
   /persons/{id}:
     get:
       summary: Persons 
@@ -101,6 +94,137 @@ paths:
       responses:
         200:
           description: Sikeres mentés
+          schema:
+            $ref: '#/definitions/Person'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: remove person
+      description: |
+        Kitöröl egy személyt.
+      parameters:
+        - name: id
+          in: path
+          description: Id szerint a felhasználó
+          required: true
+          type: number
+          format: double
+      tags:
+        - Persons
+      responses:
+        200:
+          description: Sikeres mentés
+          schema:
+            $ref: '#/definitions/Person'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /invoices:
+    get:
+      summary: Számla lista
+      description: |
+        Visszaadja a bejelntkezett felhasználó összes számláját.
+      tags:
+        - Persons
+      responses:
+        200:
+          description: Számla lista
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Invoice'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+        summary: Új számlát szúr be
+        description: |
+          Egy még nem létező számlát beszúr.
+        parameters:
+          - name: invoice
+            in: body
+            description: Számla
+            required: true
+            schema: 
+              $ref: '#/definitions/Invoice'
+        tags:
+          - Invoices
+        responses:
+          200:
+            description: Beszúr egy számlát
+            schema:
+              $ref: '#/definitions/Invoice'
+          default:
+            description: Unexpected error
+            schema:
+              $ref: '#/definitions/Error'
+  /invoices/{id}:
+    get:
+      summary: Egy számlát ad vissza 
+      description: |
+        Visszaadja a megfelelő Id-jó számlát.
+      parameters:
+        - name: id
+          in: path
+          description: Id szerinti számla
+          required: true
+          type: number
+          format: double
+      tags:
+        - Invoices
+      responses:
+        200:
+          description: Megfelelő számla
+          schema:
+            $ref: '#/definitions/Invoice'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Számla mentése
+      description: |
+        Megadott Id-val elmenti a számlát.
+      parameters:
+        - name: id
+          in: path
+          description: Id szerint a számla
+          required: true
+          type: number
+          format: double
+      tags:
+        - Invoices
+      responses:
+        200:
+          description: Sikeres mentés
+          schema:
+            $ref: '#/definitions/Invoice'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Kitöröli a megadott számlát
+      description: |
+        A megadott azonosítóval rendelkező számlát kitörli.
+      parameters:
+        - name: id
+          in: path
+          description: Id szerint a számla
+          required: true
+          type: number
+          format: double
+      tags:
+        - Invoices
+      responses:
+        200:
+          description: Sikeres mentés
+          schema:
+            $ref: '#/definitions/Invoice'
         default:
           description: Unexpected error
           schema:
