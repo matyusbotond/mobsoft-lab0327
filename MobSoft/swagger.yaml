@@ -21,6 +21,19 @@ paths:
         Felhasználó beléptetése
       tags:
         - Users
+      parameters:
+          - name: username
+            in: query
+            description: Felhasználónév
+            required: true
+            schema: 
+              type: string
+          - name: password
+            in: query
+            description: Hashelt jelszó
+            required: true
+            schema: 
+              type: string
       responses:
         200:
           description: Sikeres bejelentkezés
