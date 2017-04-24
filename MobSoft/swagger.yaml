@@ -1,9 +1,8 @@
-# this is an example of the Uber API
-# as a demonstration of an API spec in YAML
+
 swagger: '2.0'
 info:
   title: SIMS API
-  description: Move your app forward with the Uber API
+  description: 
   version: "1.0.0"
 # the domain of the service
 host: api.sims.com
@@ -15,6 +14,36 @@ basePath: /v1
 produces:
   - application/json
 paths:
+  /login:
+    post:
+      summary: Bejelentkezés
+      description: |
+        Felhasználó beléptetése
+      tags:
+        - Users
+      responses:
+        200:
+          description: Sikeres bejelentkezés
+        default:
+          description: Sikertelen bejelentkezés
+          schema:
+            $ref: '#/definitions/Error'
+  /logout:
+    post:
+      summary: Kijelentkezés
+      description: |
+        Bejelentkezett felhasználó kijelentkeztetése
+      tags:
+        - Users
+      responses:
+        200:
+          description: |
+            Sikeres kijelentkezés
+        default:
+          description: |
+            Sikertelen kijelentkezés
+          schema:
+            $ref: '#/definitions/Error'
   /persons:
     get:
       summary: Persons list
