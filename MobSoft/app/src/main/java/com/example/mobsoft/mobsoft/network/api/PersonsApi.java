@@ -17,17 +17,7 @@ import java.util.Map;
 
 public interface PersonsApi {
   
-  /**
-   * Számla lista
-   * Visszaadja a bejelntkezett felhasználó összes számláját.
-   * @return Call<List<Invoice>>
-   */
-  
-  @GET("invoices")
-  Call<List<Invoice>> invoicesGet();
-    
 
-  
   /**
    * Persons list
    * Visszaadja a bejelentkezett felhasználóhoz tartozó szeélyeket.
@@ -48,7 +38,7 @@ public interface PersonsApi {
   
   @POST("persons")
   Call<Person> personsPost(
-          @Body Invoice person
+          @Body Person person
   );
 
   

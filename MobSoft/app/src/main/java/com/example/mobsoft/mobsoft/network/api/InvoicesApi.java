@@ -14,14 +14,22 @@ import java.util.List;
 import java.util.Map;
 
 public interface InvoicesApi {
-  
+
+  /**
+   * Számla lista
+   * Visszaadja a bejelntkezett felhasználó összes számláját.
+   * @return Call<List<Invoice>>
+   */
+
+  @GET("invoices")
+  Call<List<Invoice>> invoicesGet();
   /**
    * Új számlát szúr be
    * Egy még nem létező számlát beszúr.
    * @param invoice Számla
    * @return Call<Invoice>
    */
-  
+
   @POST("invoices")
   Call<Invoice> invoicesPost(
           @Body Invoice invoice

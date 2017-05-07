@@ -52,6 +52,14 @@ public class InvoicesMock {
             memoryRepository.open(null);
             responseString = GsonHelper.getGson().toJson(f1);
             responseCode = 200;
+        } else if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "invoices/1") && request.method().equals("POST")) {
+            memoryRepository.open(null);
+            responseString = "";
+            responseCode = 200;
+        } else if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "invoices/1") && request.method().equals("DELETE")) {
+            memoryRepository.open(null);
+            responseString = "";
+            responseCode = 200;
         } else {
             responseString = "ERROR";
             responseCode = 503;

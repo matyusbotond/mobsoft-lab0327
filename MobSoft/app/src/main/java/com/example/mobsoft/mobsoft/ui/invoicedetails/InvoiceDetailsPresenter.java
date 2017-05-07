@@ -90,7 +90,7 @@ public class InvoiceDetailsPresenter extends Presenter<InvoiceDetailsScreen> {
             Log.e("Networking", "Error reading favourites", event.getThrowable());
         } else {
             if (screen != null) {
-                screen.setLoading(false);
+                screen.setRemoveResult();
                 screen.setRemoveResult();
             }
         }

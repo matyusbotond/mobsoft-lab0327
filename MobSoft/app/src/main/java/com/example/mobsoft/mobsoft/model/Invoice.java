@@ -22,6 +22,9 @@ public class Invoice extends SugarRecord{
     public Invoice() {
     }
 
+    public Invoice(com.example.mobsoft.mobsoft.network.model.Invoice server) {
+    }
+
     public String getFromName() {
         return fromName;
     }
@@ -62,5 +65,9 @@ public class Invoice extends SugarRecord{
         this.tax = tax;
     }
 
+    public com.example.mobsoft.mobsoft.network.model.Invoice ConvertToApi(){
+        com.example.mobsoft.mobsoft.network.model.Invoice server = new com.example.mobsoft.mobsoft.network.model.Invoice();
 
+        return server;
+    }
 }

@@ -58,6 +58,30 @@ public class InvoiceEditPresenter extends Presenter<InvoiceEditScreen> {
         });
     }
 
+    public void getInvoice(final long id) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                invoiceInteractor.getInvoice(id);
+            }
+        });
+    }
+
+    public void onEventMainThread(GetInvoiceEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showMessage("error");
+            }
+            Log.e("Networking", "Error reading favourites", event.getThrowable());
+        } else {
+            if (screen != null) {
+                screen.setInvoice(event.getInvoice());
+                screen.setLoading(false);
+            }
+        }
+    }
+
     public void onEventMainThread(SaveInvoiceEvent event) {
         if (event.getThrowable() != null) {
             event.getThrowable().printStackTrace();
@@ -67,7 +91,7 @@ public class InvoiceEditPresenter extends Presenter<InvoiceEditScreen> {
             Log.e("Networking", "Error reading favourites", event.getThrowable());
         } else {
             if (screen != null) {
-                screen.setLoading(false);
+                screen.setSaveResult();
                 screen.showMessage("Sikeres mentés");
             }
         }

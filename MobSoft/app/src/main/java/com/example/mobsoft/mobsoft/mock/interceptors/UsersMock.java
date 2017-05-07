@@ -34,12 +34,13 @@ public class UsersMock {
 
          if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "login") && request.method().equals("POST")) {
             memoryRepository.open(null);
+             responseString = "";
             responseCode = 200;
         } else {
             responseString = "ERROR";
             responseCode = 503;
         }
 
-        return makeResponse(request, headers, responseCode, null);
+        return makeResponse(request, headers, responseCode, responseString);
     }
 }

@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.example.mobsoft.mobsoft.MobSoftApplication;
 import com.example.mobsoft.mobsoft.R;
 import com.example.mobsoft.mobsoft.model.Person;
+import com.example.mobsoft.mobsoft.ui.invoices.InvoicesActivity;
 import com.example.mobsoft.mobsoft.ui.personedit.PersonEditActivity;
+import com.example.mobsoft.mobsoft.ui.persons.PersonsActivity;
 
 import javax.inject.Inject;
 
@@ -56,6 +58,12 @@ public class PersonDetailsActivity extends AppCompatActivity implements PersonDe
 
         nameTv.setText(person.getName());
         usernameTv.setText(person.getUsername());
+    }
+
+    @Override
+    public void setRemoveResult() {
+        Intent in = new Intent(this, PersonsActivity.class);
+        startActivity(in);
     }
 
     @Override

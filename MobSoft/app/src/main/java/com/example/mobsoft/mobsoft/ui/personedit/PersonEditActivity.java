@@ -1,5 +1,6 @@
 package com.example.mobsoft.mobsoft.ui.personedit;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,9 @@ import android.view.MenuItem;
 import com.example.mobsoft.mobsoft.MobSoftApplication;
 import com.example.mobsoft.mobsoft.R;
 import com.example.mobsoft.mobsoft.model.Person;
+import com.example.mobsoft.mobsoft.ui.invoices.InvoicesActivity;
+import com.example.mobsoft.mobsoft.ui.persondetails.PersonDetailsActivity;
+import com.example.mobsoft.mobsoft.ui.persons.PersonsActivity;
 
 import javax.inject.Inject;
 
@@ -27,6 +31,9 @@ public class PersonEditActivity extends AppCompatActivity implements PersonEditS
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.personEditToolbar);
         setSupportActionBar(myToolbar);
+
+        presenter.getPerson(getIntent().getExtras().getLong("id"));
+
     }
 
     @Override
@@ -72,5 +79,19 @@ public class PersonEditActivity extends AppCompatActivity implements PersonEditS
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    @Override
+    public void setSaveResult() {
+        Intent in = new Intent(this, PersonDetailsActivity.class);
+        Bundle b = new Bundle();
+        b.putLong("id", person.getId());
+        in.putExtras(b);
+        startActivity(in);
+    }
+
+    @Override
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

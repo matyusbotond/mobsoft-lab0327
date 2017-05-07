@@ -18,6 +18,9 @@ public class Person extends SugarRecord {
     public Person() {
     }
 
+    public Person(com.example.mobsoft.mobsoft.network.model.Person server) {
+    }
+
     public String getUsername() {
         return username;
     }
@@ -52,5 +55,11 @@ public class Person extends SugarRecord {
 
     List<Invoice> getInvoices(){
         return Invoice.find(Invoice.class, "owner = ?", getId().toString());
+    }
+
+    public com.example.mobsoft.mobsoft.network.model.Person ConvertToApi(){
+        com.example.mobsoft.mobsoft.network.model.Person server = new com.example.mobsoft.mobsoft.network.model.Person();
+
+        return server;
     }
 }

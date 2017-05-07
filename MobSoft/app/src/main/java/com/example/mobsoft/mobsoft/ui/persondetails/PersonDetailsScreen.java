@@ -9,4 +9,6 @@ import com.example.mobsoft.mobsoft.ui.ScreenBase;
 
 public interface PersonDetailsScreen extends ScreenBase {
     void setPerson(Person person);
+
+    void setRemoveResult();
 }

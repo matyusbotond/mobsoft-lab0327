@@ -94,7 +94,7 @@ public class PersonDetailsPresenter extends Presenter<PersonDetailsScreen> {
             Log.e("Networking", "Error reading favourites", event.getThrowable());
         } else {
             if (screen != null) {
-                screen.setLoading(false);
+                screen.setRemoveResult();
                 screen.showMessage("Sikeres törlés");
             }
         }

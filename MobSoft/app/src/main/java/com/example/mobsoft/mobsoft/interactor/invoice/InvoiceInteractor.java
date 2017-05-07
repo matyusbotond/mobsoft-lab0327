@@ -14,6 +14,7 @@ import com.example.mobsoft.mobsoft.model.Person;
 import com.example.mobsoft.mobsoft.network.api.InvoicesApi;
 import com.example.mobsoft.mobsoft.repository.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -42,8 +43,25 @@ public class InvoiceInteractor {
         GetInvoicesEvent event = new GetInvoicesEvent();
 
         try {
-            List<Invoice> Invoices = repository.getInvoices();
-            event.setInvoices(Invoices);
+            List<Invoice> invoices = repository.getInvoices();
+
+            List<com.example.mobsoft.mobsoft.network.model.Invoice> response = invoicesApi.invoicesGet().execute().body();
+
+            for(Invoice i : new ArrayList<>(invoices)){
+                com.example.mobsoft.mobsoft.network.model.Invoice contains = null;
+                for(com.example.mobsoft.mobsoft.network.model.Invoice s : response){
+                    if(i.getId().equals(s.getId())){
+                        contains = s;
+                        break;
+                    }
+                }
+
+                if(contains != null){
+                    invoices.add(new Invoice(contains));
+                }
+            }
+
+            event.setInvoices(invoices);
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);
@@ -58,7 +76,9 @@ public class InvoiceInteractor {
             Invoice invoice = repository.getInvoice(id);
 
             if(invoice == null){
+                com.example.mobsoft.mobsoft.network.model.Invoice response = invoicesApi.invoicesIdGet((double) id).execute().body();
 
+                invoice = new Invoice(response);
             }
 
             event.setInvoice(invoice);
@@ -74,6 +94,7 @@ public class InvoiceInteractor {
 
         try {
             repository.saveInvoice(invoice);
+            invoicesApi.invoicesPost(invoice.ConvertToApi()).execute();
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);
@@ -86,6 +107,7 @@ public class InvoiceInteractor {
 
         try {
             repository.removeInvoice(invoice);
+            invoicesApi.invoicesIdDelete(Double.valueOf(invoice.getId()));
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);

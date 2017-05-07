@@ -1,5 +1,6 @@
 package com.example.mobsoft.mobsoft.ui.invoiceedit;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,7 +10,9 @@ import android.view.MenuItem;
 import com.example.mobsoft.mobsoft.MobSoftApplication;
 import com.example.mobsoft.mobsoft.R;
 import com.example.mobsoft.mobsoft.model.Invoice;
+import com.example.mobsoft.mobsoft.ui.invoicedetails.InvoiceDetailsActivity;
 import com.example.mobsoft.mobsoft.ui.invoicedetails.InvoiceDetailsPresenter;
+import com.example.mobsoft.mobsoft.ui.invoices.InvoicesActivity;
 
 import javax.inject.Inject;
 
@@ -28,6 +31,8 @@ public class InvoiceEditActivity extends AppCompatActivity implements InvoiceEdi
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.invoiceEditToolbar);
         setSupportActionBar(myToolbar);
+
+        presenter.getInvoice(getIntent().getExtras().getLong("id"));
     }
 
     @Override
@@ -45,6 +50,20 @@ public class InvoiceEditActivity extends AppCompatActivity implements InvoiceEdi
     @Override
     public void showMessage(String message) {
 
+    }
+
+    @Override
+    public void setSaveResult() {
+        Intent in = new Intent(this, InvoiceDetailsActivity.class);
+        Bundle b = new Bundle();
+        b.putLong("id", invoice.getId());
+        in.putExtras(b);
+        startActivity(in);
+    }
+
+    @Override
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
     @Override

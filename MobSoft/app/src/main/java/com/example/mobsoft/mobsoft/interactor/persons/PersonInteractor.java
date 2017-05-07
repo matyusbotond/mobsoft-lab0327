@@ -6,12 +6,14 @@ import com.example.mobsoft.mobsoft.interactor.persons.events.GetPersonsEvent;
 import com.example.mobsoft.mobsoft.interactor.persons.events.LoginEvent;
 import com.example.mobsoft.mobsoft.interactor.persons.events.RemovePersonEvent;
 import com.example.mobsoft.mobsoft.interactor.persons.events.SavePersonEvent;
+import com.example.mobsoft.mobsoft.model.Invoice;
 import com.example.mobsoft.mobsoft.model.Person;
 import com.example.mobsoft.mobsoft.network.api.InvoicesApi;
 import com.example.mobsoft.mobsoft.network.api.PersonsApi;
 import com.example.mobsoft.mobsoft.network.api.UsersApi;
 import com.example.mobsoft.mobsoft.repository.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -44,6 +46,23 @@ public class PersonInteractor {
 
         try {
             List<Person> persons = repository.getPersons();
+
+            List<com.example.mobsoft.mobsoft.network.model.Person> response = personsApi.personsGet().execute().body();
+
+            for(Person i : new ArrayList<>(persons)){
+                com.example.mobsoft.mobsoft.network.model.Person contains = null;
+                for(com.example.mobsoft.mobsoft.network.model.Person s : response){
+                    if(i.getId().equals(s.getId())){
+                        contains = s;
+                        break;
+                    }
+                }
+
+                if(contains != null){
+                    persons.add(new Person(contains));
+                }
+            }
+
             event.setPersons(persons);
             bus.post(event);
         } catch (Exception e) {
@@ -57,6 +76,11 @@ public class PersonInteractor {
 
         try {
             Person person = repository.getPerson(id);
+
+            if(person == null){
+                person = new Person(personsApi.personsIdGet((double) id).execute().body());
+            }
+
             event.setPerson(person);
             bus.post(event);
         } catch (Exception e) {
@@ -70,6 +94,7 @@ public class PersonInteractor {
 
         try {
             repository.savePerson(person);
+            personsApi.personsPost(person.ConvertToApi());
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);
@@ -81,6 +106,7 @@ public class PersonInteractor {
         RemovePersonEvent event = new RemovePersonEvent();
         try {
             repository.removePerson(person);
+            personsApi.personsIdDelete(Double.valueOf(person.getId()));
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);
@@ -92,7 +118,8 @@ public class PersonInteractor {
         LoginEvent event = new LoginEvent();
 
         try {
-            //TODO login hívás
+
+            usersApi.loginPost(userName, password).execute();
 
             event.setLoginSuccessfull(true);
 
