@@ -17,7 +17,14 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"  >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Invoices"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/colorWhite" />
+    </android.support.v7.widget.Toolbar>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

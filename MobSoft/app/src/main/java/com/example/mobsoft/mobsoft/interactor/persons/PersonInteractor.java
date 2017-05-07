@@ -9,6 +9,7 @@ import com.example.mobsoft.mobsoft.interactor.persons.events.SavePersonEvent;
 import com.example.mobsoft.mobsoft.model.Person;
 import com.example.mobsoft.mobsoft.network.api.InvoicesApi;
 import com.example.mobsoft.mobsoft.network.api.PersonsApi;
+import com.example.mobsoft.mobsoft.network.api.UsersApi;
 import com.example.mobsoft.mobsoft.repository.Repository;
 
 import java.util.List;
@@ -31,6 +32,9 @@ public class PersonInteractor {
     @Inject
     PersonsApi personsApi;
 
+    @Inject
+    UsersApi usersApi;
+
     public PersonInteractor() {
         MobSoftApplication.injector.inject(this);
     }
@@ -48,7 +52,7 @@ public class PersonInteractor {
         }
     }
 
-    public void getPerson(int id){
+    public void getPerson(long id){
         GetPersonEvent event = new GetPersonEvent();
 
         try {

@@ -52,7 +52,7 @@ public class PersonDetailsPresenter extends Presenter<PersonDetailsScreen> {
         super.detachScreen();
     }
 
-    public void getPerson(final int id) {
+    public void getPerson(final long id) {
         executor.execute(new Runnable() {
             @Override
             public void run() {

@@ -3,6 +3,10 @@ package com.example.mobsoft.mobsoft;
 import com.example.mobsoft.mobsoft.interactor.InteractorModule;
 import com.example.mobsoft.mobsoft.interactor.invoice.InvoiceInteractor;
 import com.example.mobsoft.mobsoft.interactor.persons.PersonInteractor;
+import com.example.mobsoft.mobsoft.network.NetworkModule;
+import com.example.mobsoft.mobsoft.network.api.InvoicesApi;
+import com.example.mobsoft.mobsoft.network.api.PersonsApi;
+import com.example.mobsoft.mobsoft.network.api.UsersApi;
 import com.example.mobsoft.mobsoft.repository.RepositoryModule;
 import com.example.mobsoft.mobsoft.ui.UIModule.UIModule;
 import com.example.mobsoft.mobsoft.ui.invoicedetails.InvoiceDetailsActivity;
@@ -30,7 +34,7 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class})
+@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class, NetworkModule.class})
 public interface MobSoftApplicationComponent {
     void inject(MainActivity mainActivity);
 
@@ -67,4 +71,10 @@ public interface MobSoftApplicationComponent {
     void inject(PersonDetailsPresenter personDetailsPresenter);
 
     void inject(PersonEditPresenter personEditPresenter);
+
+    void inject(PersonsApi personApi);
+
+    void inject(InvoicesApi invoicesApi);
+
+    void inject(UsersApi usersApi);
 }

@@ -6,11 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.mobsoft.mobsoft.MobSoftApplication;
 import com.example.mobsoft.mobsoft.R;
 import com.example.mobsoft.mobsoft.model.Invoice;
+import com.example.mobsoft.mobsoft.model.Person;
+import com.example.mobsoft.mobsoft.ui.invoicedetails.InvoiceDetailsActivity;
+import com.example.mobsoft.mobsoft.ui.persondetails.PersonDetailsActivity;
 import com.example.mobsoft.mobsoft.ui.persons.PersonsActivity;
 
 import java.util.List;
@@ -50,6 +55,17 @@ public class InvoicesActivity extends AppCompatActivity implements InvoicesScree
     public void setInvoices(List<Invoice> invoices) {
         final InvoicesArrayAdapter adapter = new InvoicesArrayAdapter(this,invoices);
         ((ListView)this.findViewById(R.id.invoicesListView)).setAdapter(adapter);
+        ((ListView)this.findViewById(R.id.invoicesListView)).setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Invoice p = (Invoice)parent.getItemAtPosition(position);
+                Intent in = new Intent(parent.getContext(), InvoiceDetailsActivity.class);
+                Bundle b = new Bundle();
+                b.putLong("id", p.getId());
+                in.putExtras(b);
+                startActivity(in);
+            }
+        });
     }
 
     @Override

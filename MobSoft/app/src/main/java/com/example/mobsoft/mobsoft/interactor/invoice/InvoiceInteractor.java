@@ -51,7 +51,7 @@ public class InvoiceInteractor {
         }
     }
 
-    public void getInvoice(int id){
+    public void getInvoice(long id){
         GetInvoiceEvent event = new GetInvoiceEvent();
 
         try {

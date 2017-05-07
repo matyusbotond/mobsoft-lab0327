@@ -48,7 +48,7 @@ public class InvoiceDetailsPresenter extends Presenter<InvoiceDetailsScreen> {
         super.detachScreen();
     }
 
-    public void getInvoice(final int id) {
+    public void getInvoice(final long id) {
         executor.execute(new Runnable() {
             @Override
             public void run() {

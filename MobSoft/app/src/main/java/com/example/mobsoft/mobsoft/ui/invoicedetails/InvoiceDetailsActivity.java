@@ -3,6 +3,7 @@ package com.example.mobsoft.mobsoft.ui.invoicedetails;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.example.mobsoft.mobsoft.MobSoftApplication;
 import com.example.mobsoft.mobsoft.R;
 import com.example.mobsoft.mobsoft.model.Invoice;
+import com.example.mobsoft.mobsoft.ui.invoiceedit.InvoiceEditActivity;
 import com.example.mobsoft.mobsoft.ui.invoices.InvoicesActivity;
 import com.example.mobsoft.mobsoft.ui.main.MainPresenter;
 import com.example.mobsoft.mobsoft.ui.persons.PersonsActivity;
@@ -30,7 +32,11 @@ public class InvoiceDetailsActivity extends AppCompatActivity implements Invoice
         setContentView(R.layout.activity_invoice_details);
 
         MobSoftApplication.injector.inject(this);
-        presenter.getInvoice(invoiceId);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.invoiceDetailsToolbar);
+        setSupportActionBar(myToolbar);
+
+        presenter.getInvoice(getIntent().getExtras().getLong("id"));
 
     }
 
@@ -99,6 +105,13 @@ public class InvoiceDetailsActivity extends AppCompatActivity implements Invoice
                 presenter.removeInvoice(invoice);
                 return true;
 
+            case R.id.action_edit:
+                Intent in = new Intent(this, InvoiceEditActivity.class);
+                Bundle b = new Bundle();
+                b.putLong("id", invoiceId);
+                in.putExtras(b);
+                startActivity(in);
+                return true;
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

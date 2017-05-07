@@ -54,7 +54,8 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
     }
 
-    public void lgnButton_OnClick(View v){
+    public void lgnButton_onClick(View view) {
         presenter.login(((EditText)this.findViewById(R.id.username)).getText().toString(),((EditText)this.findViewById(R.id.password)).getText().toString());
+
     }
 }
