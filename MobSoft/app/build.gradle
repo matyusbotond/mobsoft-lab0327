@@ -22,7 +22,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -36,7 +36,14 @@ dependencies {
     // Required for @Generated annotation (missing in Java <= 1.6; therefore, Android)
     provided 'javax.annotation:jsr250-api:1.0'
 
+    //Retrofit and OkHttp
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
+    compile 'com.squareup.okhttp3:okhttp:3.0.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
+    compile 'com.google.code.gson:gson:2.4'
+    compile "io.swagger:swagger-annotations:1.5.0"
+
     compile 'com.github.satyan:sugar:1.4'
     compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.android.support:design:25.1.1'
 }

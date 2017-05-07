@@ -67,5 +67,4 @@ public interface MobSoftApplicationComponent {
     void inject(PersonDetailsPresenter personDetailsPresenter);
 
     void inject(PersonEditPresenter personEditPresenter);
-
 }

@@ -7,6 +7,8 @@ import com.example.mobsoft.mobsoft.interactor.persons.events.LoginEvent;
 import com.example.mobsoft.mobsoft.interactor.persons.events.RemovePersonEvent;
 import com.example.mobsoft.mobsoft.interactor.persons.events.SavePersonEvent;
 import com.example.mobsoft.mobsoft.model.Person;
+import com.example.mobsoft.mobsoft.network.api.InvoicesApi;
+import com.example.mobsoft.mobsoft.network.api.PersonsApi;
 import com.example.mobsoft.mobsoft.repository.Repository;
 
 import java.util.List;
@@ -25,6 +27,9 @@ public class PersonInteractor {
 
     @Inject
     EventBus bus;
+
+    @Inject
+    PersonsApi personsApi;
 
     public PersonInteractor() {
         MobSoftApplication.injector.inject(this);

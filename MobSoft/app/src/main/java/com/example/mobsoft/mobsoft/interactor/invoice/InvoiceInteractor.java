@@ -11,6 +11,7 @@ import com.example.mobsoft.mobsoft.interactor.persons.events.RemovePersonEvent;
 import com.example.mobsoft.mobsoft.interactor.persons.events.SavePersonEvent;
 import com.example.mobsoft.mobsoft.model.Invoice;
 import com.example.mobsoft.mobsoft.model.Person;
+import com.example.mobsoft.mobsoft.network.api.InvoicesApi;
 import com.example.mobsoft.mobsoft.repository.Repository;
 
 import java.util.List;
@@ -29,6 +30,9 @@ public class InvoiceInteractor {
 
     @Inject
     EventBus bus;
+
+    @Inject
+    InvoicesApi invoicesApi;
 
     public InvoiceInteractor() {
         MobSoftApplication.injector.inject(this);
@@ -51,8 +55,13 @@ public class InvoiceInteractor {
         GetInvoiceEvent event = new GetInvoiceEvent();
 
         try {
-            Invoice Invoice = repository.getInvoice(id);
-            event.setInvoice(Invoice);
+            Invoice invoice = repository.getInvoice(id);
+
+            if(invoice == null){
+
+            }
+
+            event.setInvoice(invoice);
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);
