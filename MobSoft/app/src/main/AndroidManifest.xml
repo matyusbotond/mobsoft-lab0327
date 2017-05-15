@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mobsoft.mobsoft">
     <uses-sdk android:minSdkVersion="19" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:name=".MobSoftApplication"
         android:allowBackup="true"
@@ -22,6 +25,9 @@
         <activity android:name=".ui.persondetails.PersonDetailsActivity" />
         <activity android:name=".ui.personedit.PersonEditActivity" />
         <activity android:name=".ui.persons.PersonsActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="f758ea956fe79efacea1865bfe78f75df0c7ee60" />
     </application>
 
 </manifest>

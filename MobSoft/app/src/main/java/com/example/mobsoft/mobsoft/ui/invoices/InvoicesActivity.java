@@ -36,13 +36,13 @@ public class InvoicesActivity extends AppCompatActivity implements InvoicesScree
         Toolbar myToolbar = (Toolbar) findViewById(R.id.invoicesToolbar);
         setSupportActionBar(myToolbar);
 
-        presenter.getInvoices();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         presenter.attachScreen(this);
+        presenter.getInvoices();
     }
 
     @Override

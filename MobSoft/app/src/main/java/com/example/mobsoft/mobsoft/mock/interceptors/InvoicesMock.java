@@ -20,6 +20,8 @@ import okhttp3.Response;
 import static com.example.mobsoft.mobsoft.mock.interceptors.MockHelper.makeResponse;
 
 public class InvoicesMock {
+    static List<Invoice> invoice = new ArrayList<>();
+
     public static Response process(Request request) {
         Uri uri = Uri.parse(request.url().toString());
 
@@ -29,7 +31,6 @@ public class InvoicesMock {
 
         MemoryRepository memoryRepository = new MemoryRepository();
 
-        List<Invoice> invoice = new ArrayList<>();
         Invoice f1 = new Invoice();
         f1.setCreated("2017. 01. 01.");
         f1.setFromAddress("2117 Isaszeg Mátyás király utca 29.");
@@ -57,6 +58,7 @@ public class InvoicesMock {
             responseString = "";
             responseCode = 200;
         } else if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "invoices/1") && request.method().equals("DELETE")) {
+            invoice.remove(0);
             memoryRepository.open(null);
             responseString = "";
             responseCode = 200;

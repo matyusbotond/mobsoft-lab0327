@@ -19,7 +19,7 @@ import javax.inject.Inject;
 
 public class PersonDetailsActivity extends AppCompatActivity implements PersonDetailsScreen{
 
-    private int personId;
+    private long personId;
 
     @Inject
     PersonDetailsPresenter presenter;
@@ -34,13 +34,16 @@ public class PersonDetailsActivity extends AppCompatActivity implements PersonDe
         Toolbar myToolbar = (Toolbar) findViewById(R.id.personDetailsToolbar);
         setSupportActionBar(myToolbar);
 
-        presenter.getPerson(getIntent().getExtras().getLong("id"));
+        personId = getIntent().getExtras().getLong("id");
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         presenter.attachScreen(this);
+
+        presenter.getPerson(personId);
     }
 
     @Override

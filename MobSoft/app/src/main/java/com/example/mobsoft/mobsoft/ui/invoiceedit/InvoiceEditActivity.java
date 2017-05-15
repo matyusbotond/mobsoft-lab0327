@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.mobsoft.mobsoft.MobSoftApplication;
 import com.example.mobsoft.mobsoft.R;
@@ -22,6 +23,7 @@ public class InvoiceEditActivity extends AppCompatActivity implements InvoiceEdi
 
     @Inject
     InvoiceEditPresenter presenter;
+    private long invoiceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +34,15 @@ public class InvoiceEditActivity extends AppCompatActivity implements InvoiceEdi
         Toolbar myToolbar = (Toolbar) findViewById(R.id.invoiceEditToolbar);
         setSupportActionBar(myToolbar);
 
-        presenter.getInvoice(getIntent().getExtras().getLong("id"));
+        invoiceId = getIntent().getExtras().getLong("id");
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         presenter.attachScreen(this);
+        presenter.getInvoice(invoiceId);
     }
 
     @Override
@@ -63,7 +67,20 @@ public class InvoiceEditActivity extends AppCompatActivity implements InvoiceEdi
 
     @Override
     public void setInvoice(Invoice invoice) {
+
         this.invoice = invoice;
+
+        TextView idTv = (TextView)findViewById(R.id.invoiceEditNumber);
+        TextView name = (TextView)findViewById(R.id.invoiceEditName);
+        TextView address = (TextView)findViewById(R.id.invoiceEditAddress);
+        TextView amount = (TextView)findViewById(R.id.invoiceEditAmount);
+        TextView tax = (TextView)findViewById(R.id.invoiceEditTax);
+
+        idTv.setText(invoice.getId().toString());
+        name.setText(invoice.getFromName());
+        address.setText(invoice.getFromAddress());
+        amount.setText(String.valueOf(invoice.getNetAmount()));
+        tax.setText(String.valueOf(invoice.getNetAmount()));
     }
 
     @Override
@@ -83,7 +100,20 @@ public class InvoiceEditActivity extends AppCompatActivity implements InvoiceEdi
         switch (item.getItemId()) {
             case R.id.action_save:
 
+                TextView idTv = (TextView)findViewById(R.id.invoiceEditNumber);
+                TextView name = (TextView)findViewById(R.id.invoiceEditName);
+                TextView address = (TextView)findViewById(R.id.invoiceEditAddress);
+                TextView amount = (TextView)findViewById(R.id.invoiceEditAmount);
+                TextView tax = (TextView)findViewById(R.id.invoiceEditTax);
+
+                invoice.setId(Long.parseLong(idTv.getText().toString()));
+                invoice.setNetAmount(Integer.parseInt(amount.getText().toString()));
+                invoice.setFromName(name.getText().toString());
+                invoice.setFromAddress(address.getText().toString());
+                invoice.setTax(Integer.parseInt(tax.getText().toString()));
+
                 presenter.saveInvoice(invoice);
+
                 return true;
 
             default:

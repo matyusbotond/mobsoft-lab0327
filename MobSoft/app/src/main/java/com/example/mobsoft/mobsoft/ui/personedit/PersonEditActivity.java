@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.mobsoft.mobsoft.MobSoftApplication;
 import com.example.mobsoft.mobsoft.R;
@@ -20,6 +21,8 @@ public class PersonEditActivity extends AppCompatActivity implements PersonEditS
 
     private Person person;
 
+    private long personId;
+
     @Inject
     PersonEditPresenter presenter;
 
@@ -32,7 +35,8 @@ public class PersonEditActivity extends AppCompatActivity implements PersonEditS
         Toolbar myToolbar = (Toolbar) findViewById(R.id.personEditToolbar);
         setSupportActionBar(myToolbar);
 
-        presenter.getPerson(getIntent().getExtras().getLong("id"));
+        personId = getIntent().getExtras().getLong("id");
+
 
     }
 
@@ -40,6 +44,8 @@ public class PersonEditActivity extends AppCompatActivity implements PersonEditS
     protected void onStart() {
         super.onStart();
         presenter.attachScreen(this);
+        presenter.getPerson(personId);
+
     }
 
     @Override
@@ -70,6 +76,16 @@ public class PersonEditActivity extends AppCompatActivity implements PersonEditS
         switch (item.getItemId()) {
             case R.id.action_save:
 
+                TextView password = (TextView)findViewById(R.id.password);
+                TextView role = (TextView)findViewById(R.id.role);
+                TextView name = (TextView)findViewById(R.id.name);
+                TextView username = (TextView)findViewById(R.id.username);
+
+                person.setName(name.getText().toString());
+                person.setUsername(username.getText().toString());
+                person.setRole(role.getText().toString());
+                person.setPassword(password.getText().toString());
+
                 presenter.savePerson(person);
                 return true;
 
@@ -93,5 +109,15 @@ public class PersonEditActivity extends AppCompatActivity implements PersonEditS
     @Override
     public void setPerson(Person person) {
         this.person = person;
+
+        TextView password = (TextView)findViewById(R.id.password);
+        TextView role = (TextView)findViewById(R.id.role);
+        TextView name = (TextView)findViewById(R.id.name);
+        TextView username = (TextView)findViewById(R.id.username);
+
+        role.setText(person.getRole().toString());
+        name.setText(person.getName().toString());
+        username.setText(person.getUsername().toString());
+
     }
 }

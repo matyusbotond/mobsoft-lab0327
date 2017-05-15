@@ -23,7 +23,7 @@ public class InvoiceDetailsActivity extends AppCompatActivity implements Invoice
     @Inject
     InvoiceDetailsPresenter presenter;
 
-    private int invoiceId;
+    private long invoiceId;
     private Invoice invoice;
 
     @Override
@@ -36,7 +36,9 @@ public class InvoiceDetailsActivity extends AppCompatActivity implements Invoice
         Toolbar myToolbar = (Toolbar) findViewById(R.id.invoiceDetailsToolbar);
         setSupportActionBar(myToolbar);
 
-        presenter.getInvoice(getIntent().getExtras().getLong("id"));
+
+        invoiceId = getIntent().getExtras().getLong("id");
+
 
     }
 
@@ -44,6 +46,9 @@ public class InvoiceDetailsActivity extends AppCompatActivity implements Invoice
     protected void onStart() {
         super.onStart();
         presenter.attachScreen(this);
+
+
+        presenter.getInvoice(invoiceId);
     }
 
     @Override
@@ -64,6 +69,8 @@ public class InvoiceDetailsActivity extends AppCompatActivity implements Invoice
 
     @Override
     public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+
         TextView idTv = (TextView)findViewById(R.id.idTv);
         TextView dateTv = (TextView)findViewById(R.id.dateTv);
         TextView fromNameTv = (TextView)findViewById(R.id.fromNameTv);

@@ -105,8 +105,8 @@ public class PersonInteractor {
     public void removePerson(Person person){
         RemovePersonEvent event = new RemovePersonEvent();
         try {
-            repository.removePerson(person);
             personsApi.personsIdDelete(Double.valueOf(person.getId()));
+            repository.removePerson(person);
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);

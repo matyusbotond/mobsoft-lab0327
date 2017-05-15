@@ -91,7 +91,6 @@ public class InvoiceDetailsPresenter extends Presenter<InvoiceDetailsScreen> {
         } else {
             if (screen != null) {
                 screen.setRemoveResult();
-                screen.setRemoveResult();
             }
         }
     }

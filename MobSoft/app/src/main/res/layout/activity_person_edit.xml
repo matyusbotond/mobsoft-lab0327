@@ -29,12 +29,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Uername"
+        android:text="Username"
         android:ems="10"
         android:layout_below="@+id/invoiceEditToolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/invoiceEditNumber" />
+        android:id="@+id/username" />
 
     <EditText
         android:layout_width="match_parent"
@@ -42,10 +42,10 @@
         android:inputType="textPersonName"
         android:text="Name"
         android:ems="10"
-        android:layout_below="@+id/invoiceEditNumber"
+        android:layout_below="@+id/username"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/invoiceEditName" />
+        android:id="@+id/name" />
 
     <EditText
         android:layout_width="match_parent"
@@ -53,29 +53,30 @@
         android:inputType="textPersonName"
         android:text="Role"
         android:ems="10"
-        android:layout_below="@+id/invoiceEditName"
+        android:layout_below="@+id/name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/invoiceEditAddress" />
+        android:id="@+id/role" />
 
     <EditText
-        android:id="@+id/invoiceEditAmount"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/invoiceEditAddress"
+        android:layout_below="@+id/role"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        />
 
     <EditText
-        android:id="@+id/invoiceEditTax"
+        android:id="@+id/passwordAgain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/invoiceEditAmount"
+        android:layout_below="@+id/password"
         android:ems="10"
         android:hint="Password again"
         android:inputType="textPassword"/>

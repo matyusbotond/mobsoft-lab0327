@@ -34,13 +34,14 @@ public class PersonsActivity extends AppCompatActivity implements PersonsScreen 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.personsToolbar);
         setSupportActionBar(myToolbar);
 
-        presenter.getPersons();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         presenter.attachScreen(this);
+        presenter.getPersons();
+
     }
 
     @Override
